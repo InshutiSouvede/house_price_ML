@@ -1,3 +1,4 @@
+# Method1: Logistic regression 
 df <-read.csv("/home/souvede/Documents/R_course/house_prices.csv", header = TRUE) #the preprocessed data
 str(df)
 
@@ -18,4 +19,4 @@ glm.predict <- rep("NO",506)
 glm.predict[glm.prob>0.5] <- "YES"
 
 #confusion matrix
-table(glm.predict,df$Sold)
+table(glm.predict,df$Sold) #accuracy in this case is 65%
