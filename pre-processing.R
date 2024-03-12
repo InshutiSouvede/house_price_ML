@@ -1,12 +1,12 @@
-Customer <- read.csv("/home/souvede/Documents/R_course/Customer.csv",header = TRUE)
+Customer <- read.csv("C:/Users/LENOVO/Documents/R/house_price_ML/Customer.csv",header = TRUE)
 # View(Customer)# we will take age
 # Product <- read.table("/home/souvede/Documents/R_course/Product.txt",header = TRUE, sep = "\t")
 # View(Product)# we will take ??
 str(Customer)
 # To get edd(extended data dictionary), the mean quaters, mode,...:
 summary(Customer)
-# To plot the scatter plot of certain columns(morethan 2 variables):
-pairs(~Age+Postal.Code+ID, data = Customer)
+# To plot the scatter plot of certain columns(morethan 2 variables) use ~ and +:
+pairs(~Age+Postal.Code, data = Customer)
 
 #to plot scatter plot of 2 variables, one agins the other:
 plot(Customer$Postal.Code,Customer$Age)
@@ -44,17 +44,18 @@ summary(Customer$Age)
 Customer$Postal.Code = log(1+Customer$Postal.Code) # base e
 Customer$Postal.Code
 #transforming values of fields that mean almost the samething, egdistance form a certain place, to one vribale:
-Customer$dist <- (dist1+dist2+dist3)/3
+# Customer$dist <- (dist1+dist2+dist3)/3
 Customer2 <- Customer[,-7:-9] #this remove 7th to 9th column ftom customer and assign the rest in customer2
 
 # Creating Dummy variables(with 0 or 1): this comes handy when handling non-numerical variables
 install.packages("dummy")
+library('dummy')
 # Cutomer <- dummy(data.frame(Customer)
 Customer3<- dummy(data.frame(Customer$Region))
 
 # Correlation matrix:
 cor(Customer)
-round(cor(Customer),2)  
+round(cor(Customer3),2)  
 #correlation btn a variable and another variables
 cor(Customer$Age,Customer$Postal.Code)
 round(cor(Customer$Age),2)  

@@ -47,7 +47,7 @@ str(txtReport)
 csvReport <- read.csv("C:/Users/LENOVO/Documents/R/house_price_ML/Report.csv", header=TRUE)
 View(csvReport)
 # Example 2
-Product <- read.table("C:/Users/LENOVO/Documents/R/house_price_ML/Product.txt", header=TRUE, sep = ',')
+Product <- read.table("C:/Users/LENOVO/Documents/R/house_price_ML/Product.txt", header=TRUE, sep = '\t')
 str(Product)
 Customer <- read.csv("C:/Users/LENOVO/Documents/R/house_price_ML/Customer.csv", header=TRUE)
 View(Customer)
