@@ -1,5 +1,7 @@
-#METHOD2 Linear discriminationa
-library(MASS, lib.loc = "/usr/lib/R/library")
+#############################METHOD2 Linear discriminationa
+df <-read.csv("C:/Users/LENOVO/Documents/R/house_price_ML/house_prices.csv", header = TRUE) #the preprocessed data
+
+library(MASS)
 lda.fit <- lda(Sold~., data = df)
 lda.fit
 #find the prdicted probabilities
@@ -8,7 +10,7 @@ lda.pred$posterior
 lda.class <- lda.pred$class
 
 #confusion matrix:
-table(lda.class,df$Sold) #Accuracy in this casr is 65%
+table(lda.class,df$Sold) #Accuracy in this case is 65%
 
 #To change boundry condition eg num of classes that belong to one if we take boundry condition of 0.8
 sum(lda.pred$posterior[,1]>0.8) #76 i.e for 76 values, the probability ofbelonging to 1 is more than 0.8

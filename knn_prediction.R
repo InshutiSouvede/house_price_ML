@@ -1,16 +1,20 @@
-#KNN
+#################################### KNN ###########################
+df <-read.csv("C:/Users/LENOVO/Documents/R/house_price_ML/house_prices.csv", header = TRUE) #the preprocessed data
+
 library("caTools")
+library('glmnet')
 set.seed(0)
 split <- sample.split(df, SplitRatio = 0.8)
 train_set <- subset(df, split == TRUE)
 test_set <- subset(df, split == FALSE)
 
 train.fit <- glm(Sold~.,data = train_set, family = binomial)
-test_probs <- predict(train.fit, test_set, type = 'response')
+test.probs <- predict(train.fit, test_set, type = 'response')
 
 test.pred = rep('NO',120)
-test.pred[test_probs > 0.5] = 'YES' # whenever the probability is > 0.5
-table(test.pred, test_set$Sold)
+test.pred[test.probs > 0.5] = 'YES' # whenever the probability is > 0.5
+
+table(test.pred, test_set$Sold) #something is wrong here
 
 #METHOD 3 KNN bases classifiers 
 library("class")
@@ -21,7 +25,7 @@ testX <-  test_set[,-16]
 trainY <- train_set$Sold
 testY <- test_set$Sold
 
-k = 1
+k = 3
 
 trainX_a = scale(trainX)
 testX_a = scale(testX)
